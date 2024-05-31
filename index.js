@@ -44,12 +44,10 @@
 
 // // const objmap = Object.keys(obj).flatmap(key => ({ key, value: obj[key] }))
 // // console.log(objmap,"ll");
-
 const { createCanvas } = require("canvas");
 const { drawContributions } = require("github-contributions-canvas");
 const fs = require("fs");
-const { format, differenceInDays } = require("date-fns");
-const addDays = require("date-fns/addDays");
+const { format, differenceInDays, addDays } = require("date-fns");
 
 // Generate exactly 350 contributions for the specified date range
 const generateContributions = (startDate, endDate, totalContributions) => {
@@ -92,12 +90,20 @@ const contributions = generateContributions(
 const canvas = createCanvas(800, 200);
 
 // Draw the contributions on the canvas
-drawContributions(canvas, { data: contributions }).then(() => {
-  // Save the canvas as an image
-  const out = fs.createWriteStream("./contributions.png");
-  const stream = canvas.createPNGStream();
-  stream.pipe(out);
-  out.on("finish", () =>
-    console.log("The contribution graph image was created.")
-  );
-});
+drawContributions(canvas, {
+  data: contributions,
+  username: "imran787898",
+  themeName: "standard",
+})
+  .then(() => {
+    // Save the canvas as an image
+    const out = fs.createWriteStream("./contributions.png");
+    const stream = canvas.createPNGStream();
+    stream.pipe(out);
+    out.on("finish", () =>
+      console.log("The contribution graph image was created.")
+    );
+  })
+  .catch((err) => {
+    console.error("Error drawing contributions:", err);
+  });
