@@ -1,0 +1,25 @@
+{
+  "name": "dsalgo",
+  "version": "1.0.0",
+  "description": "my code ",
+  "main": "index.js",
+  "scripts": {
+    "test": "test",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "muhammadimran787898"
+  },
+  "keywords": [
+    "code"
+  ],
+  "author": "imran",
+  "license": "ISC",
+  "dependencies": {
+    "canvas": "^2.11.2",
+    "date-fns": "^3.6.0",
+    "github-contributions-canvas": "^0.7.0",
+    "jsonfile": "^6.1.0"
+  }
+}
